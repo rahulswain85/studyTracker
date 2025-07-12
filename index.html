@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Study Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header-title">📚 Daily Study Tracker</h1>
+            <p class="header-subtitle">Track your learning journey, one session at a time</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Summary Card -->
+            <section class="summary-section">
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <h3>Today's Total</h3>
+                        <p class="summary-value" id="todayTotal">0 min</p>
+                    </div>
+                    <div class="summary-item">
+                        <h3>This Week</h3>
+                        <p class="summary-value" id="weekTotal">0 min</p>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Total Sessions</h3>
+                        <p class="summary-value" id="totalSessions">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Input Form -->
+            <section class="form-section">
+                <div class="form-card">
+                    <h2 class="form-title">Add Study Session</h2>
+                    <form id="studyForm" class="study-form">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="e.g., Mathematics, Physics, Programming">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <div class="duration-input">
+                                    <input type="number" id="duration" name="duration" required min="1" placeholder="30">
+                                    <select id="timeUnit" name="timeUnit">
+                                        <option value="minutes">Minutes</option>
+                                        <option value="hours">Hours</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Notes (Optional)</label>
+                            <textarea id="notes" name="notes" placeholder="What did you study? Any key concepts or insights?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add Session</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Filters -->
+            <section class="filters-section">
+                <div class="filters-card">
+                    <h3>Filter Sessions</h3>
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label for="filterSubject">Subject</label>
+                            <select id="filterSubject" class="filter-select">
+                                <option value="">All Subjects</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="filterDate">Date</label>
+                            <input type="date" id="filterDate" class="filter-input">
+                        </div>
+                        <button id="clearFilters" class="btn btn-secondary">Clear Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Study Logs -->
+            <section class="logs-section">
+                <div class="logs-header">
+                    <h2>Study Sessions</h2>
+                    <div class="logs-actions">
+                        <button id="exportCSV" class="btn btn-outline">Export CSV</button>
+                        <button id="clearAll" class="btn btn-danger">Clear All</button>
+                    </div>
+                </div>
+                
+                <div id="logsContainer" class="logs-container">
+                    <!-- Logs will be dynamically inserted here -->
+                </div>
+                
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">📝</div>
+                    <h3>No study sessions yet</h3>
+                    <p>Add your first study session to start tracking your progress!</p>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="charts-card">
+                    <h3>Study Analytics</h3>
+                    <div class="charts-container">
+                        <div class="chart-item">
+                            <h4>Time by Subject</h4>
+                            <canvas id="subjectChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-item">
+                            <h4>Daily Progress</h4>
+                            <canvas id="dailyChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Daily Study Tracker. Built with ❤️ by Rahul for productive learning.</p>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Action</h3>
+            <p id="modalMessage">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button id="confirmYes" class="btn btn-danger">Yes, Continue</button>
+                <button id="confirmNo" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
